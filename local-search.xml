@@ -4,6 +4,32 @@
   
   
   <entry>
+    <title>Data base</title>
+    <link href="/2025/03/09/Data-base/"/>
+    <url>/2025/03/09/Data-base/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>YAGO论文学习</title>
+    <link href="/2025/03/06/YAGO%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2025/03/06/YAGO%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Knowledge Base(Knwoledge Graph)是一个有向标签多重图（两个节点之间允许有多条边）</p><p>相比与WikiData，YAGO 4 KB结合了WiKiData的 instance和Schema.org的分类  </p><p>方便进行推理(Resoning)  </p><p>WiKidata采用Class,有很多用户自己定义的复杂类类别。<br>YAGO采用多个属性(Properity)的组合，方便推理，但是如果有些非常规类别名，则很难搜索。  </p><p>在这篇论文中，作者尝试结合WiKidata和YAGO的优点，即YAGO采用Schema.org,拥有比较清晰的上层分类(Upper taxonomy)结构，而Wikidata的下层分类(lower taxonomy)更具细节.  </p><h2 id="Designing-YAGO"><a href="#Designing-YAGO" class="headerlink" title="Designing YAGO"></a>Designing YAGO</h2>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Network Program学习笔记</title>
     <link href="/2025/03/03/Network-Program%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2025/03/03/Network-Program%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
