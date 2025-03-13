@@ -8,7 +8,7 @@
     <link href="/2025/03/09/Data-base/"/>
     <url>/2025/03/09/Data-base/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>DB和DBMS:一个数据库和一个软件（管理多个数据库）  </p><p>数据模型（Data Model）：  </p><ul><li>ER图:数据关系描述的更清晰</li><li>关系模型（Relation Model）：可读性更强</li></ul><p>A 3 levels data description:<br>External Schema（用户层）-&gt;Conceptual schema（逻辑结构，常用ER图）-&gt;Physical schema（DBMS管理，内部层，物理存储）</p><p>DBMS<br>DDL：数据定义语言 定义数据库结构<br>DML：数据库操作语言，增删改查：SELECT, INSERT, UPDATE DELETE  </p><h2 id="Relational-Model-and-Relational-Algebra"><a href="#Relational-Model-and-Relational-Algebra" class="headerlink" title="Relational Model and Relational Algebra"></a>Relational Model and Relational Algebra</h2><ol><li>笛卡尔积：AXB<br><code>SQL: SELECT * FROM table1，table2</code></li><li>关系：整个表就是一个关系：属性attribute（列），元组tuple（行），域（Domain）表示某个属性的取值范围，主键Primary Key：可以唯一标识一个元组的字段， 外键：在一个表中引用另一个表的主键，用来建立表之间的关系</li></ol><p>关系代数：</p><ol><li>并（union）</li><li>交（intersection）</li><li>差（Difference）</li><li>笛卡尔积</li><li>选择：<br>$$<br>\sigma_{model &#x3D; ‘db’ \ and \ age \ &gt;15} (Students)<br>$$</li><li>投影：<br>$$<br>\pi_{addreee}(Student)<br>$$</li><li>join:按条件合并两表的行（实际是选择 + 笛卡尔积的组合⨝<br><code>SELECT * FROM Students</code><br><code>JOIN Enrollments ON Students.id = Enrollments.student_id</code></li><li>Division除：</li></ol>]]></content>
     
     
     
@@ -21,7 +21,7 @@
     <link href="/2025/03/06/YAGO%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/"/>
     <url>/2025/03/06/YAGO%E8%AE%BA%E6%96%87%E5%AD%A6%E4%B9%A0/</url>
     
-    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Knowledge Base(Knwoledge Graph)是一个有向标签多重图（两个节点之间允许有多条边）</p><p>相比与WikiData，YAGO 4 KB结合了WiKiData的 instance和Schema.org的分类  </p><p>方便进行推理(Resoning)  </p><p>WiKidata采用Class,有很多用户自己定义的复杂类类别。<br>YAGO采用多个属性(Properity)的组合，方便推理，但是如果有些非常规类别名，则很难搜索。  </p><p>在这篇论文中，作者尝试结合WiKidata和YAGO的优点，即YAGO采用Schema.org,拥有比较清晰的上层分类(Upper taxonomy)结构，而Wikidata的下层分类(lower taxonomy)更具细节.  </p><h2 id="Designing-YAGO"><a href="#Designing-YAGO" class="headerlink" title="Designing YAGO"></a>Designing YAGO</h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Knowledge Base(Knwoledge Graph)是一个有向标签多重图（两个节点之间允许有多条边）</p><p>相比与WikiData，YAGO 4 KB结合了WiKiData的 instance和Schema.org的分类  </p><p>方便进行推理(Resoning)  </p><p>WiKidata采用Class,有很多用户自己定义的复杂类类别。<br>YAGO采用多个属性(Properity)的组合，方便推理，但是如果有些非常规类别名，则很难搜索。  </p><p>在这篇论文中，作者尝试结合WiKidata和YAGO的优点，即YAGO采用Schema.org,拥有比较清晰的上层分类(Upper taxonomy)结构，而Wikidata的下层分类(lower taxonomy)更具细节.  </p><h2 id="Designing-YAGO"><a href="#Designing-YAGO" class="headerlink" title="Designing YAGO"></a>Designing YAGO</h2><ol><li>prefer properties over class membership</li><li>Choose the property with fewer objects.</li><li>The upper taxonomy exists to define formal properties that will be populated</li><li>The lower taxonomy exists to convey human-intelligible information about its instances in a non-redundant form.</li></ol>]]></content>
     
     
     
@@ -34,7 +34,7 @@
     <link href="/2025/03/03/Network-Program%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <url>/2025/03/03/Network-Program%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<h1 id="Network-Programing-学习笔记"><a href="#Network-Programing-学习笔记" class="headerlink" title="Network Programing 学习笔记"></a>Network Programing 学习笔记</h1><h2 id="考试形式"><a href="#考试形式" class="headerlink" title="考试形式"></a>考试形式</h2><p>实验+考试，考试主要是理论</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Network-Programing-学习笔记"><a href="#Network-Programing-学习笔记" class="headerlink" title="Network Programing 学习笔记"></a>Network Programing 学习笔记</h1><h2 id="考试形式"><a href="#考试形式" class="headerlink" title="考试形式"></a>考试形式</h2><p>实验+考试，考试主要是理论</p><h2 id="TCP协议的Socket的函数调用流程"><a href="#TCP协议的Socket的函数调用流程" class="headerlink" title="TCP协议的Socket的函数调用流程"></a>TCP协议的Socket的函数调用流程</h2><p><img src="/1.png" alt="这是图片" title="1"></p>]]></content>
     
     
     
