@@ -4,6 +4,32 @@
   
   
   <entry>
+    <title>French Learning</title>
+    <link href="/2025/03/27/French-Learning/"/>
+    <url>/2025/03/27/French-Learning/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Distribute_Database</title>
+    <link href="/2025/03/21/Distribute-Database/"/>
+    <url>/2025/03/21/Distribute-Database/</url>
+    
+    <content type="html"><![CDATA[<h2 id="第一节ppt">第一节PPT</h2><h2 id="nosql-database">NoSql Database</h2><p>CAP- Conisitency, Avalablity， Torlerance to network Partitions<br />三个标准很难同时满足，传统的Relational database只能满足c和a<br />很多distribued database会去满足A和P</p><p>batch access:将多条数据请求或操作合并在一个批次中一次性执行。例如，在数据库中，可以通过批量插入或更新来减少与数据库的交互次数，从而提高整体性能。<br />比如说可以设置当有100条插入操作之后，再去统一执行操作，</p><p>1.Graph Database<br />类似于E-R图，用节点代表数据实体，用边表示数据实体之间的关系。</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Data base</title>
     <link href="/2025/03/09/Data-base/"/>
     <url>/2025/03/09/Data-base/</url>
@@ -47,7 +73,7 @@
     <link href="/2025/02/20/CS106L-Learning/"/>
     <url>/2025/02/20/CS106L-Learning/</url>
     
-    <content type="html"><![CDATA[<h2 id="写在前面"><strong>写在前面</strong></h2>说实话，虽然我本科是计算机科班出身，但对C++的认识仍然只停留在cin和cout。<p>这次，由于国外的研究生比较闲，可以借这次机会好好学习一下c++<p><p>Telecomsudparis的课真是大粪，基本都是我本科学过的，而且他课上讲的真的不精，很多东西都是浅尝辄止，很难想象目前的欧洲教育体系下培养出来的学生真的能找到工作吗？</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="写在前面"><strong>写在前面</strong></h2>说实话，虽然我本科是计算机科班出身，但对C++的认识仍然只停留在cin和cout。<p>这次，由于国外的研究生比较闲，可以借这次机会好好学习一下c++<p><p>Telecomsudparis的课真是大粪，基本都是我本科学过的，而且他课上讲的真的不精，很多东西都是浅尝辄止，很难想象目前的欧洲教育体系下培养出来的学生真的能找到工作吗？</p><h2 id="type-and-structs">Type and Structs</h2><p>相比与C语言，c++多了一个新的结构体操作<code>std::pair&lt;T1, T2&gt;</code><br />接受两个类型的参数<br />应用场景:函数返回多个值，如<code>return &#123;a/b, true&#125;</code></p><p>可以用using来声明一个类型，例如 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">using</span> QuadraticSolution = std::pair&lt;<span class="hljs-type">bool</span>, std::pair&lt;<span class="hljs-type">double</span>, <span class="hljs-type">double</span>&gt;&gt;;<br>QuadraticSolution‍ <span class="hljs-built_in">solveQuadratic</span>(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b, <span class="hljs-type">double</span> c);<br></code></pre></td></tr></table></figure>用auto声明变量，可以自动推导一些变量的类型</p>]]></content>
     
     
     
