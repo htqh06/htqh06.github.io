@@ -27,7 +27,7 @@
 <meta property="og:description" content="Introduction DB和DBMS:一个数据库和一个软件（管理多个数据库） 数据模型（Data Model）： - ER图:数据关系描述的更清晰 - 关系模型（Relation Model）：可读性更强 A 3 levels data description: External Schema（用户层）-&gt;Conceptual schema（逻辑结构，常用ER图）-&gt;P">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-09T14:40:05.000Z">
-<meta property="article:modified_time" content="2025-03-13T11:05:12.786Z">
+<meta property="article:modified_time" content="2025-04-09T20:35:09.254Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          251 words
+          590 words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 mins
+          5 mins
         
       </span>
     
@@ -304,7 +304,27 @@ Key：可以唯一标识一个元组的字段，
 笛卡尔积的组合⨝<br />
 <code>SELECT * FROM Students</code>
 <code>JOIN Enrollments ON Students.id = Enrollments.student_id</code> 8.
-Division除：</p>
+Division除： ## sql语句
+如果想要表示或者怎么办：使用union语句将两个select联合在一起<br />
+如：Give the id of movies released before 1930 or having actor’s id 12
+in their casting.<br />
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> c.movieid<br><span class="hljs-keyword">from</span> castings c<br><span class="hljs-keyword">where</span> c.actorid <span class="hljs-operator">=</span> <span class="hljs-number">12</span> <br><span class="hljs-keyword">union</span><br><span class="hljs-keyword">select</span> m.id<br><span class="hljs-keyword">from</span> movies m<br><span class="hljs-keyword">where</span> m.year <span class="hljs-operator">&lt;</span> <span class="hljs-number">1930</span><br></code></pre></td></tr></table></figure> 字符串匹配 用like ‘%abc%’,即 字符串中含有abc的<br />
+在某个中in(), 不在某个中not in()</p>
+<p>用来找两个不同的演员，自连接： <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> m.id, m.title <br><span class="hljs-keyword">FROM</span> movies m, castings c1, castings c2 <br><span class="hljs-keyword">WHERE</span> 	m.id<span class="hljs-operator">=</span>c1.movieid <span class="hljs-keyword">AND</span> m.id<span class="hljs-operator">=</span>c2.movieid <br>	<span class="hljs-keyword">AND</span> c1.actorid<span class="hljs-operator">&lt;&gt;</span>c2.actorid <br>	<span class="hljs-keyword">AND</span> m.yr<span class="hljs-operator">=</span><span class="hljs-number">2000</span> <br></code></pre></td></tr></table></figure> 在代码中
+<code>c1.actorid&lt;&gt;c2.actorid</code>
+引入了两个表，表示c1的id不等于c2的id，即有两个即以上不同的演员</p>
+<p>max：max返回的是最大值，例如
+max(salary)返回的就是最大薪水的值，所以，如果想要用找拥有最大薪水员工的信息，可以用子查询
+如： <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span><br><span class="hljs-keyword">from</span> employee<br><span class="hljs-keyword">where</span> salary <span class="hljs-operator">=</span> (<span class="hljs-keyword">select</span> <span class="hljs-built_in">max</span>(salary)<br>                  <span class="hljs-keyword">from</span> employee)<br></code></pre></td></tr></table></figure> group by:搭配count使用，在 GROUP BY
+中，一组就是一行，每组只投影一次，count可以计数group
+by中每个组的行数<br />
+having：HAVING 是用来对 GROUP BY 分组后的结果 进行筛选的，而 HAVING
+COUNT(…) 就是：筛选出那些组内“行数”符合条件的分组<br />
+学会使用子查询来满足条件<br />
+如果要找同一个表中不同的实体拥有相同的属性，可以先取这个表做一个自连接，如r1.n
+&lt;&gt;r2.n,然后再筛选想要的属性 如 List of the hotels with their
+address and category, having at least 2 of rooms with the same price.
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> h.address, h.cat<br><span class="hljs-keyword">from</span> hotel h, room r1, room r2<br><span class="hljs-keyword">where</span> r1.nroom <span class="hljs-operator">&lt;&gt;</span> r2.nroom<br><span class="hljs-keyword">and</span> r1.price <span class="hljs-operator">=</span> r2.price<br><span class="hljs-keyword">and</span> h.hotel <span class="hljs-operator">=</span> r1.hotel<br></code></pre></td></tr></table></figure></p>
 
                 
               </div>
