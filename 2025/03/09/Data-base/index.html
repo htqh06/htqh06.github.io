@@ -27,7 +27,7 @@
 <meta property="og:description" content="Introduction DB和DBMS:一个数据库和一个软件（管理多个数据库） 数据模型（Data Model）： - ER图:数据关系描述的更清晰 - 关系模型（Relation Model）：可读性更强 A 3 levels data description: External Schema（用户层）-&gt;Conceptual schema（逻辑结构，常用ER图）-&gt;P">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-03-09T14:40:05.000Z">
-<meta property="article:modified_time" content="2025-04-09T21:34:57.682Z">
+<meta property="article:modified_time" content="2025-04-10T16:33:35.607Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          705 words
+          1.2k words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          6 mins
+          10 mins
         
       </span>
     
@@ -325,13 +325,40 @@ COUNT(…) 就是：筛选出那些组内“行数”符合条件的分组<br />
 如果要找同一个表中不同的实体拥有相同的属性，可以先取这个表做一个自连接，如r1.n
 &lt;&gt;r2.n,然后再筛选想要的属性 如 List of the hotels with their
 address and category, having at least 2 of rooms with the same price.
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> h.address, h.cat<br><span class="hljs-keyword">from</span> hotel h, room r1, room r2<br><span class="hljs-keyword">where</span> r1.nroom <span class="hljs-operator">&lt;&gt;</span> r2.nroom<br><span class="hljs-keyword">and</span> r1.price <span class="hljs-operator">=</span> r2.price<br><span class="hljs-keyword">and</span> h.hotel <span class="hljs-operator">=</span> r1.hotel<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> h.address, h.cat<br><span class="hljs-keyword">from</span> hotel h, room r1, room r2<br><span class="hljs-keyword">where</span> r1.nroom <span class="hljs-operator">&lt;&gt;</span> r2.nroom<br><span class="hljs-keyword">and</span> r1.price <span class="hljs-operator">=</span> r2.price<br><span class="hljs-keyword">and</span> h.hotel <span class="hljs-operator">=</span> r1.hotel<br></code></pre></td></tr></table></figure> ### 关系视图
+View（视图）是基于一个或多个表构建的虚拟表，它本身不存储数据，只是一个查询的结果集。用户可以像访问普通表一样访问视图。<br />
+你有一个大表 employees，你创建一个视图只看“财务部员工”： <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> finance_employees <span class="hljs-keyword">AS</span><br><span class="hljs-keyword">Select</span> e.name, e.id<br><span class="hljs-keyword">from</span> employee e<br><span class="hljs-keyword">where</span> e.type <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;money&#x27;</span><br></code></pre></td></tr></table></figure>
+你以后可以用： <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> finace_employees<br>...<br></code></pre></td></tr></table></figure> 视图(View)可以用来权限控制：<br />
+Give access rights not to an entire table, but to a view defined on this
+table 赋予和删除访问权限 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">Grant</span> <span class="hljs-operator">&lt;</span>rights<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">on</span> <span class="hljs-operator">&lt;</span>object<span class="hljs-operator">&gt;</span><br><span class="hljs-keyword">to</span> <span class="hljs-keyword">user</span><br><span class="hljs-keyword">REVOKE</span> <span class="hljs-operator">&lt;</span>rights<span class="hljs-operator">&gt;</span><br> <span class="hljs-keyword">ON</span> <span class="hljs-operator">&lt;</span>object<span class="hljs-operator">&gt;</span><br> <span class="hljs-keyword">FROM</span> <span class="hljs-operator">&lt;</span><span class="hljs-keyword">user</span><span class="hljs-operator">&gt;</span><br></code></pre></td></tr></table></figure></p>
 <h2 id="er图和uml类图">ER图和UML类图</h2>
 <p>在ER图中，关系两边的数字代表每个实体参与这个关系的最小值和最大值，如：<br />
 emplpyee (1,1)———-菱形works for————–(0,n)department<br />
 代表每个雇员必须至少参与这个关系一次，最多也参与一次<br />
 而(0,n)代表每个部门最少雇佣0名员工，最多雇佣n名员工<br />
 通过主键和外键的来确定某几个实体之间的联系</p>
+<h2 id="规范化normalization">规范化(Normalization)</h2>
+<h3 id="函数依赖functional-dependency">函数依赖(Functional
+dependency)</h3>
+<p>一组属性 B 函数依赖于另一组属性 A，当且仅当：
+在任意合法的数据记录中，每一组 A 的值，唯一对应一组 B 的值。 即知道
+A，就能唯一确定 B。 这时，我们叫做 B依赖A<br />
+X → Y 的意思是： Y 依赖于 X，也可以说：X 决定 Y<br />
+Armstrong’s Axioms：</p>
+<h3 id="部分依赖第二范式2nf">部分依赖（第二范式2NF）</h3>
+<p>如果一个非主属性依赖于主键的一部分（而不是整个复合主键），那么这种依赖叫做
+部分依赖。 例如在选课成绩表中，主键是学号+课程<br />
+而表中拥有学生姓名这一属性，学生姓名只依赖于学号而不依赖于课程<br />
+这就是部份依赖<br />
+在第二范式中，只要求所有非主属性没有依赖主键的一部分，即满足2NF ###
+传递依赖（第三范式3NF） 非主属性依赖另一个非主属性（再依赖主键）
+例如在关系R(学生id，学院，院长)中<br />
+我们设置学生id为主键，学院依赖学生id FD: 学生id-&gt;学院<br />
+院长依赖学院：FD:学院-&gt;院长<br />
+构成了传递依赖关系，因此不符合3NF<br />
+### 第一范式 每个字段都是原子值,例如：<br />
+001 张三 138xxxx8888,139xxxx7777<br />
+电话号码”这一列包含了多个值，违反原子性。</p>
 
                 
               </div>
