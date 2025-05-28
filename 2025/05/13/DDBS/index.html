@@ -19,21 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="写在前面 说实话，虽然我本科是计算机科班出身，但对C++的认识仍然只停留在cin和cout。  这次，由于国外的研究生比较闲，可以借这次机会好好学习一下c++  Telecom sudparis的课真是大粪，基本都是我本科学过的，而且他课上讲的真的不精，很多东西都是浅尝辄止，很难想象目前的欧洲教育体系下培养出来的学生真的能找到工作吗？ Type and Structs 相比与C语言">
+    <meta name="description" content="Distributed Database system Distributed Database system Definition: collection of autonomous processing elements that are interconnected by a computer network. DDBS &#x3D; DDB + DDBMS DDBS有两个设计策略：分别是分片">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CS106L Learning">
-<meta property="og:url" content="http://example.com/2025/02/20/CS106L-Learning/index.html">
+<meta property="og:title" content="DDBS">
+<meta property="og:url" content="http://example.com/2025/05/13/DDBS/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="写在前面 说实话，虽然我本科是计算机科班出身，但对C++的认识仍然只停留在cin和cout。  这次，由于国外的研究生比较闲，可以借这次机会好好学习一下c++  Telecom sudparis的课真是大粪，基本都是我本科学过的，而且他课上讲的真的不精，很多东西都是浅尝辄止，很难想象目前的欧洲教育体系下培养出来的学生真的能找到工作吗？ Type and Structs 相比与C语言">
+<meta property="og:description" content="Distributed Database system Distributed Database system Definition: collection of autonomous processing elements that are interconnected by a computer network. DDBS &#x3D; DDB + DDBMS DDBS有两个设计策略：分别是分片">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-02-20T12:39:59.000Z">
-<meta property="article:modified_time" content="2025-05-28T12:49:28.194Z">
+<meta property="article:published_time" content="2025-05-13T14:19:42.000Z">
+<meta property="article:modified_time" content="2025-05-13T16:06:12.007Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>CS106L Learning - Hexo</title>
+  <title>DDBS - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="CS106L Learning"></span>
+            <span id="subtitle" data-typed-text="DDBS"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-20 13:39" pubdate>
-          February 20, 2025 pm
+        <time datetime="2025-05-13 16:19" pubdate>
+          May 13, 2025 pm
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          261 words
+          584 words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 mins
+          5 mins
         
       </span>
     
@@ -270,27 +270,60 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">CS106L Learning</h1>
+            <h1 id="seo-header">DDBS</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="写在前面"><strong>写在前面</strong></h2>
-说实话，虽然我本科是计算机科班出身，但对C++的认识仍然只停留在cin和cout。
-<p>
-这次，由于国外的研究生比较闲，可以借这次机会好好学习一下c++
-<p>
-<p>Telecom
-sudparis的课真是大粪，基本都是我本科学过的，而且他课上讲的真的不精，很多东西都是浅尝辄止，很难想象目前的欧洲教育体系下培养出来的学生真的能找到工作吗？</p>
-<h2 id="type-and-structs">Type and Structs</h2>
-<p>相比与C语言，c++多了一个新的结构体操作
-<code>std::pair&lt;T1, T2&gt;</code><br />
-接受两个类型的参数<br />
-应用场景:函数返回多个值，如<code>return &#123;a/b, true&#125;</code></p>
-<p>可以用using来声明一个类型，例如 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-keyword">using</span> QuadraticSolution = std::pair&lt;<span class="hljs-type">bool</span>, std::pair&lt;<span class="hljs-type">double</span>, <span class="hljs-type">double</span>&gt;&gt;;<br>QuadraticSolution‍ <span class="hljs-built_in">solveQuadratic</span>(<span class="hljs-type">double</span> a, <span class="hljs-type">double</span> b, <span class="hljs-type">double</span> c);<br></code></pre></td></tr></table></figure>
-用auto声明变量，可以自动推导一些变量的类型 ## initialization and
-References</p>
-<p>c++新的 uniform initialization <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs C++"><span class="hljs-type">int</span> x&#123;<span class="hljs-number">42</span>&#125;;<br>std::string s&#123;<span class="hljs-string">&quot;hello&quot;</span>&#125;;<br><span class="hljs-type">int</span> arrp[]&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br><span class="hljs-comment">//容器</span><br>std::vector&lt;<span class="hljs-type">int</span>&gt; vec&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>&#125;;<br></code></pre></td></tr></table></figure></p>
+                <h2 id="distributed-database-system">Distributed Database system</h2>
+<p>Distributed Database system Definition: collection of autonomous
+processing elements that are interconnected by a computer network.<br />
+DDBS = DDB + DDBMS<br />
+DDBS有两个设计策略：分别是分片(fragmentaion)和复制(replication)<br />
+### Fragmentation
+分片：将一个大表分为数个小表，数个表分给运行在不同主机上的DDB<br />
+水平分片（Horizontal
+fragmentation）:按照元组（tuple）去分，也就是按照行去分片<br />
+垂直分片(Vertical
+fragmentation):按照垂直去分片，也就是按照属性去分<br />
+混合分片<br />
+分片的几个要求：完整性（completeness）分片不会导致数据缺失，
+Reconstruction，能合成回原表以及Disjointness每个数据在分片中只能出现一次</p>
+<h3 id="replication-and-allocation">Replication and allocation</h3>
+<p>repliaction也分为三个：<br />
+1. 完全复制(fully replication):each fragment at each site 2.
+部分复制(partically replication): each fragment at some of the sites 3.
+不复制(也就是partitioned DB)：each fragment resides at only one site</p>
+<h3 id="transparency">Transparency</h3>
+<p>1.Network Transparency：<br />
+Loaction Transparency: User dont need to know the loaction for the
+DDB<br />
+Naming Transparency: : A unique name is provided for each object in the
+database.<br />
+2.Fragmentation
+transparency：确保用户既无须知道也不会参与数据的碎片化过程，用户无需负责针对碎片制定查询处理策略，也无需撰写针对碎片的查询，而且可以<br />
+水平分片<br />
+垂直分片</p>
+<h2 id="distributed-concurrency-control">Distributed Concurrency
+Control</h2>
+<h3 id="transaction-事务">Transaction 事务</h3>
+<p>Transaction是数据库中的一组逻辑操作的集合，拥有ACID四个性质<br />
+Atomicity，Consistency，Isolation，Durability。<br />
+事务的可能状态：Active，Partically commit，
+commit，Failed，Aborted激活，部分提交，提交，失败和放弃。<br />
+事务提交的两步协议：如果一个候选人投票放弃，则放弃提交，如果全部候选人都投票提交了，事务才能被提交。<br />
+### 并发性Concurrency 并发性的三个冲突： 1. 写写冲突：数据覆盖 2.
+读写冲突：脏读：A修改了数据但未提交，B读到了A写的数据，但A回滚 3.
+读—读与写—写之外的异常（幻读，或者不可重复读）</p>
+<h3 id="冲突可串行化serializability">冲突可串行化(Serializability)</h3>
+<p>可以通过前驱图判断，如果在一个序列化操作中，有读写冲突，写读冲突或者写写冲突，我们在事务1和2之间加一条边，如果是一个无环图，则可串行化Serializability。<br />
+注意判断调度是否可以Serialize，以及并发调度转串行化<br />
+### 2PL 将事务的阶段分为生长期和收缩期 生长期(Growing
+Phase):事务可以不断获取锁但不能释放锁。<br />
+收缩期(Shrinking Phase)：事务只能释放锁但不能获取锁。<br />
+Strict 2PL：直到事务结束都持有锁<br />
+Centralized 2PL：所有锁由一个中心服务器管理<br />
+分布式 2PL：每个站点本地+协调</p>
 
                 
               </div>
@@ -308,8 +341,8 @@ References</p>
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>CS106L Learning</div>
-      <div>http://example.com/2025/02/20/CS106L-Learning/</div>
+      <div>DDBS</div>
+      <div>http://example.com/2025/05/13/DDBS/</div>
     </div>
     <div class="license-meta">
       
@@ -321,7 +354,7 @@ References</p>
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 20, 2025</div>
+          <div>May 13, 2025</div>
         </div>
       
       
@@ -353,15 +386,15 @@ References</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/03/Network-Program%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Network Program学习笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Network Program学习笔记</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2025/04/10/javaguide/" title="javaguide">
+                        <span class="hidden-mobile">javaguide</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

@@ -27,7 +27,7 @@
 <meta property="og:description" content="Java基础 值传递 不像C++有引用传递，java中全部都是值传递，函数拿到的全是原变量的副本 ### java序列化 将数据结构或对象转换成可以存储或传输的形式，通常是二进制字节流，也可以是 JSON, XML 等文本格式 发生在OSI七层模型中的表示层，对应于TCP四层协议的应用层 OSI七层：应用层，表示层，会话层，传输层，网络层，数据链路层，物理层 ### 代理模式 我们">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2025-04-10T09:27:45.000Z">
-<meta property="article:modified_time" content="2025-04-20T12:17:44.330Z">
+<meta property="article:modified_time" content="2025-05-07T21:10:04.005Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k words
+          4k words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          15 mins
+          34 mins
         
       </span>
     
@@ -354,9 +354,71 @@ PriorityQueue
 <h2 id="map">map</h2>
 <p>hashmap和hashtable：hashmap支持null键和值，而hashtable不支持。hashmap的扩容以初始大小16，后续每次扩容一倍<br />
 hashmap的遍历：<br />
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">HashMap&lt;Integer, Integer&gt; hashmap  = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><span class="hljs-keyword">for</span>(Integer i : hashmap.keySet())&#123;<br>    <span class="hljs-comment">//遍历键</span><br>&#125;<br><span class="hljs-keyword">for</span>(Map.Entry&lt;Integer, String&gt; entry : map.entrySet())&#123;<br>    <span class="hljs-comment">//遍历条目entry</span><br>&#125;<br></code></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">HashMap&lt;Integer, Integer&gt; hashmap  = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br><span class="hljs-keyword">for</span>(Integer i : hashmap.keySet())&#123;<br>    <span class="hljs-comment">//遍历键</span><br>&#125;<br><span class="hljs-keyword">for</span>(Map.Entry&lt;Integer, String&gt; entry : map.entrySet())&#123;<br>    <span class="hljs-comment">//遍历条目entry</span><br>&#125;<br></code></pre></td></tr></table></figure> ### 哈希表如何检查和处理重复元素
+检查重复元素：把对象加入hashset时，会先计算对象的hashcode来判断对线加入的位置，并与其他加入的对象的hashcode值，如果没有相符的hashcode。如果有hashcode值相同的对象，调用equals()来检查是否真的相同，如果相同，就不让加入操作成功<br />
+拉链法：将链表和数组相结合。也就是说创建一个链表数组，数组中每一格就是一个链表。若遇到哈希冲突，则将冲突的值加到链表中即可。<br />
+jdk1.8后之后，如果链表长度超过64，则转换为红黑树。查询效率为O(logn),但实际上，遇到哈希冲突的概率很小。<br />
+concurrenthashmap：对哈希表的segment数组进行加锁，分段存储，是其线程安全，</p>
 <h2 id="并发编程">并发编程</h2>
 <h3 id="线程与进程">线程与进程</h3>
+<p>进程是系统运行程序的基本单位，而线程是系统调度的最小单位，每个进程之间相互隔离
+而线程拥有公共的地址空间（指的是一个程序或者说一个进程，可以访问的全部内存地址的集合），在线程中，线程的程序计数器，虚拟机栈和本地方法栈是独立的，而堆是共享的。
+虚拟机栈用于存储存储局部变量表、操作数栈、常量池引用等信息，而公共的堆和方法去用于村新创建的对象，方法区主要用于存放已被加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。<br />
+线程上下文切换：保存线程计数器和上的下文，等待下一次线程获得cpu事件来恢复当前状态
+死锁，线程a和b在互相等待对方持有的资源被释放，造成一直等待。<br />
+预防死锁的方法：破坏死锁的条件，（非抢占，互斥，占有并等待，循环等待）<br />
+检测死锁的算法：资源分配图<br />
+避免死锁的算法：银行家算法<br />
+悲观锁：假设是最坏的情况，
+共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程。例如synchronized和reentrantlock<br />
+乐观锁：认为共享资源每次被访问的时候不会出现问题，因此不加锁也不等待，通过版本号或者cas算法检测是否被其他线程修改，如果修改则回滚<br />
+Compare And Swap（比较与交换）：CAS
+的思想很简单，就是用一个预期值和要更新的变量值进行比较，两值相等才会进行更新。CAS有三个值，V要更新的变量值，E预期值和N拟写入的新值，如果V等于E，证明没有被其他线程修改，则才进行更新。<br />
+synchronic关键字比volatile开销要高，但是volatile关键字只能保证可见性不能保证原子性。<br />
+ReentrantLock实现的是一个接口，而非关键字。</p>
+<h3 id="线程池">线程池</h3>
+<p>线程池就是管理一系列线程的资源池。当有任务要处理时，直接从线程池中获取线程来处理，处理完之后线程并不会立即被销毁，而是等待下一个任务。<br />
+线程池常见的三个参数：corePoolSize：任务队列未达到队列容量时，最多启动的线程数目<br />
+maximumPoolSize：任务队列中存放的任务达到队列容量的时候，可以运行的线程数目变位最大线程数。<br />
+workQueue：新任务来的时候会先判断当前运行的线程数量是否达到核心线程数，如果达到的话，新任务就会被存放在队列中。<br />
+keepAliveTime：线程大于corePoolSize时，非核心线程的存活时间
+运行流程：如果当前运行的线程数小于核心线程数，则创建一个线程来处理任务，如果大于，则放入任务队列，如果无法放入任务队列，任务队列已满，创建新线程来处理。如果当前运行的线程数已经等同于最大线程数了，新建线程将会使当前运行的线程超出最大线程数，那么当前任务会被拒绝</p>
+<p>Future类：调用CompletableFuture的时候可以实现任务T3等待T1，T2在完成后再运行</p>
+<h3 id="threadlocal">Threadlocal</h3>
+<p>用处：Threadlocal用于存储线程自己的变量内容，是独立于其他线程的，让每个线程都有自己的专属本地变量。<br />
+Threadlocal的方法含在Thread类中，当调用Threadlocal的方法时，创建一个ThreadlocalMap，他存储键值对，ThreadLocal为
+key ，Object 对象为 value 的键值对<br />
+Threadlocal会导致内存泄露(回收时部分内存无法被及时释放)。因为在Threadlocalmap中Threadlocal作为的key是弱引用，而value是强引用，会导致当key被回收之后而value仍然存在。即null的key对某个value，导致内存泄露。</p>
+<h2 id="jvm内存管理">JVM内存管理</h2>
+<p>在线程中，线程分为：公用的栈和方法区，以及私有的程序计数器，虚拟机栈和本地方法栈<br />
+在jvm中，程序计数器用于存储线程运行的状态，以便上下文切换的时候能及时还原线程的运行状态。虚拟机栈用于存储线程的除了本地方法外的方法，每个方法的调用都会通过栈帧进行。本地方法栈存储的是java中的native方法。<br />
+jvm中线程的堆分为三个部分，新生代，老生代，记录对象年龄的为4位二进制数，所以最大为15岁。堆，此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例以及数组都在这里分配内存。<br />
+方法区（永生代，元空间）：类信息、字段信息、方法信息、常量、静态变量、即时编译器编译后的代码缓存等数据。同时，方法区中还会存在字符串常量池，和运行时常量池。<br />
+运行时常量池：字面量：如 int, float, String
+等常量，符号引用或者动态常量。<br />
+字符串常量池用来存储字符串变量String，在java中如果创建一个字符串hello，则存入字符串常量池，如果用new创建，则单独分配内存
+### 对象的创建 1.类类型检查<br />
+2.分配内存：<br />
+(1)指针碰撞：设置一个指针，在指针左侧是被分配的空间，指针右侧是未被分配的空间，要分配新的内存空间，只需要把指针向右侧移动就行了<br />
+(2)空闲列表：虚拟机维护一个列表，记录哪里的块是空闲的。<br />
+3.初始化零值<br />
+4.创建对象头<br />
+5.调用init方法</p>
+<p>对象在jvm中的存储：对象头+实例数据+对齐填充。 ## java中的垃圾清理
+堆分为新生代，老生代和永生代。新创建的对象一般位于新生代的elden区。如果对象过大，或者对象活过很多次垃圾清理，或者新生代的内存空间使用完毕，则会从新生代进入老生代。<br />
+### 死亡对象的判断
+堆垃圾回收的第一步就是死亡对象的判断，引用计数法：给对象添加一个引用计数器，如果对象被引用则加1，否则-1，当对象的引用计数器为0的时候，则其没有被任何其他对象引用，为死亡对象。但这个方法不好实现。所以采用另一种方法，即可达性分析的方法。通过一系列的称为
+“GC Roots”
+的对象作为起点，从这些节点开始向下搜索，节点所走过的路径称为引用链，当一个对象到
+GC Roots
+没有任何引用链相连的话，则证明此对象是不可用的，需要被回收。<br />
+强引用，
+软引用，弱引用，虚引用。强引用不能被回收，而软引用会在内存空间不足的情况下回收，弱引用存活周期最短，在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。<br />
+### 垃圾清除算法：
+标记清除算法：把要清除的垃圾全部标记，然后定点清除这些垃圾，问题是会产生很多的内存碎片，而且清除效率也较低。<br />
+复制算法：将内存分为两块，每次使用一半，使用完毕后把仍然存活的对象复制到对面的一半内存中去，并直接清除这一块的所有内存内容。<br />
+标记整理算法：把存活的内存内容向内存的一端移动，以达到是内存更加连续的目的，然后清理掉剩下的内容。
+分代收集算法：根据新生代和老生代的内存清理速度不同，新生代可以采用速度较快的复制算法，这样只用每次复制少数可用的数据就行了，而老生代采用标记整理算法更好，因为老生代的内存清理速度更慢。</p>
 
                 
               </div>
@@ -418,6 +480,12 @@ hashmap的遍历：<br />
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/05/13/DDBS/" title="DDBS">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DDBS</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
